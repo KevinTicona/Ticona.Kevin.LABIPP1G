@@ -1,0 +1,91 @@
+# depslib dependency file v1.0
+1602887859 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\fecha.c
+	<stdio.h>
+	<stdlib.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602890988 c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\tipo.h
+
+1602885872 c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\fecha.h
+
+1602890988 c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\marca.h
+
+1602896238 c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\notebook.h
+
+1602895507 c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\servicio.h
+
+1602885872 c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\trabajo.h
+
+1602896219 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602890942 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\marca.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602895624 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602890932 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602887859 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602896320 source:c:\users\keni_\desktop\ticonakevinparcial1\parciallaboratorio1\notebook.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
