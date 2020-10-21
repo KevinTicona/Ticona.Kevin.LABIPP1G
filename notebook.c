@@ -35,11 +35,24 @@ char menu()
     return opcion;
 }
 
+/** \brief AltaNotebook
+ *
+ * \param list[] eNotebook
+ * \param tam int
+ * \param ID int
+ * \param tipo[] eTipo
+ * \param tamT int
+ * \param marca[] eMarca
+ * \param tamM int
+ * \return int
+ *
+ */
 int altaNotebook(eNotebook list[], int tam, int ID, eTipo tipo[], int tamT, eMarca marca[], int tamM)
 {
     eNotebook newNotebook;
     int validIdTipo;
     int validIdMarca;
+
     if(list != NULL && tam > 0 && tam <= 100 && tipo != NULL && tamT > 0 && marca != NULL && tamM > 0)
     {
         for(int i = 0; i < tam; i++)
@@ -53,13 +66,14 @@ int altaNotebook(eNotebook list[], int tam, int ID, eTipo tipo[], int tamT, eMar
                 fflush(stdin);
                 gets(newNotebook.modelo);
                 formatName(newNotebook.modelo);
-                while(strlen(newNotebook.modelo) > 30 && strlen(newNotebook.modelo) == 0)
+                while(strlen(newNotebook.modelo) ==0 || strlen(newNotebook.modelo)> 20 )
                 {
-                    printf("\nDato invalido. Ingrese marca: ");
+                    printf("\nNo ingreso ningun dato. Ingrese el Modelo: ");
                     fflush(stdin);
                     gets(newNotebook.modelo);
                     formatName(newNotebook.modelo);
                 }
+
                 //Marca
                 mostrarMarcas(marca, tamM);
                 printf("\nIngrese el ID de la Marca: ");
@@ -95,15 +109,19 @@ int altaNotebook(eNotebook list[], int tam, int ID, eTipo tipo[], int tamT, eMar
                 list[i] = newNotebook;
                 return 0;
             }
-            else
-            {
-                printf("\nNo hay lugar para otra bicicleta...\n");
-            }
+            // printf("\nNo hay lugar para otra Notebook...\n");
         }
+        printf("\nNo hay lugar para otra Notebook...\n");
     }
     return -1;
 }
 
+/** \brief Toma un char y el primer caracter lo vuelve Mayuscula
+ *
+ * \param name[] char
+ * \return void
+ *
+ */
 void formatName(char name[])
 {
     int len;
@@ -123,6 +141,13 @@ void formatName(char name[])
     }
 }
 
+/** \brief Inicia el array de Notebooks
+ *
+ * \param list[] eNotebook
+ * \param len int
+ * \return int
+ *
+ */
 int initNotebooks(eNotebook list[], int len)
 {
     if(list != NULL && len > 0 && len <= 100)
@@ -137,7 +162,16 @@ int initNotebooks(eNotebook list[], int len)
     return -1;
 }
 
-
+/** \brief Muestra Una Notebook
+ *
+ * \param note eNotebook
+ * \param marca[] eMarca
+ * \param tamM int
+ * \param tipo[] eTipo
+ * \param tamT int
+ * \return void
+ *
+ */
 void mostrarNotebook(eNotebook note, eMarca marca[], int tamM, eTipo tipo[], int tamT)
 {
     char descMarca[20];
@@ -157,6 +191,17 @@ void mostrarNotebook(eNotebook note, eMarca marca[], int tamM, eTipo tipo[], int
           );
 }
 
+/** \brief Muestra el array de Notebooks
+ *
+ * \param list[] eNotebook
+ * \param tam int
+ * \param marcas[] eMarca
+ * \param tamM int
+ * \param tipos[] eTipo
+ * \param tamT int
+ * \return int
+ *
+ */
 int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo tipos[], int tamT)
 {
     if(list != NULL && tam > 0 && tam <= 100 && marcas != NULL && tamM > 0 && tipos != NULL && tamT > 0)
@@ -181,6 +226,17 @@ int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo
 
 
 
+/** \brief Modifica el Precio o Tipo, devuelve 0 si esta todo ok, y -1 si algo salio mal
+ *
+ * \param list[] eNotebook
+ * \param tam int
+ * \param marca[] eMarca
+ * \param tamM int
+ * \param tipo[] eTipo
+ * \param tamT int
+ * \return int
+ *
+ */
 int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT)
 {
     eNotebook newNotebook;
@@ -250,38 +306,38 @@ int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo
                 }
                 break;
             case 2:
-                    mostrarTipos(tipo, tamT);
-                    printf("\nIngrese el ID del tipo que desea modificar: ");
+                mostrarTipos(tipo, tamT);
+                printf("\nIngrese el ID del tipo que desea modificar: ");
+                fflush(stdin);
+                scanf("%d", &newNotebook.idTipo);
+                validIdTipo = findTipoById(tipo, tamT, newNotebook.idTipo);
+                while( validIdTipo < 0)
+                {
+                    printf("\nDato invalido. Ingrese el ID del tipo que desea modificar: ");
                     fflush(stdin);
                     scanf("%d", &newNotebook.idTipo);
                     validIdTipo = findTipoById(tipo, tamT, newNotebook.idTipo);
-                    while( validIdTipo < 0)
-                    {
-                        printf("\nDato invalido. Ingrese el ID del tipo que desea modificar: ");
-                        fflush(stdin);
-                        scanf("%d", &newNotebook.idTipo);
-                        validIdTipo = findTipoById(tipo, tamT, newNotebook.idTipo);
-                    }
-                    printf("Desea Modificarlo? s-si n-no\n");
+                }
+                printf("Desea Modificarlo? s-si n-no\n");
+                fflush(stdin);
+                scanf("%c", &confirmar);
+                confirmar = tolower(confirmar);
+                while(confirmar != 's' && confirmar != 'n')
+                {
+                    printf("\nDato invalida. \nDesea Modificarlo? s o n\n");
                     fflush(stdin);
                     scanf("%c", &confirmar);
                     confirmar = tolower(confirmar);
-                    while(confirmar != 's' && confirmar != 'n')
-                    {
-                        printf("\nDato invalida. \nDesea Modificarlo? s o n\n");
-                        fflush(stdin);
-                        scanf("%c", &confirmar);
-                        confirmar = tolower(confirmar);
-                    }
-                    if(confirmar == 's')
-                    {
-                        list[indice].idTipo = newNotebook.idTipo;
-                        error = 0;
-                    }
-                    else
-                    {
-                        error = 1;
-                    }
+                }
+                if(confirmar == 's')
+                {
+                    list[indice].idTipo = newNotebook.idTipo;
+                    error = 0;
+                }
+                else
+                {
+                    error = 1;
+                }
                 break;
             default:
                 printf("Opcion invalida");
@@ -292,6 +348,14 @@ int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo
     return error;
 }
 
+/** \brief Recorre el vector en busca de un ID
+ *
+ * \param list[] eNotebook
+ * \param len int
+ * \param id int
+ * \return int
+ *
+ */
 int findNotebookById(eNotebook list[], int len,int id)
 {
     int indice = -1;
@@ -309,6 +373,17 @@ int findNotebookById(eNotebook list[], int len,int id)
     return indice;
 }
 
+/** \brief Realiza la baja logica devolviendo 0 si salio todo ok con la confirmacion del usuario,
+ *         -1 si algo salio mal y 1 si el usuario cancelo la baja
+ * \param list[] eNotebook
+ * \param tam int
+ * \param marca[] eMarca
+ * \param tamM int
+ * \param tipo[] eTipo
+ * \param tamT int
+ * \return int
+ *
+ */
 int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT)
 {
     int error = -1;
@@ -355,6 +430,46 @@ int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tip
                 error = 1;
             }
         }
+
+    }
+
+    return error;
+}
+
+/** \brief Ordena las Notebooks por Marca y Precio
+ *
+ * \param list[] eNotebook
+ * \param len int
+ * \param marca[] eMarca
+ * \return int
+ *
+ */
+int ordenarNotebooks(eNotebook list[], int len,eMarca marca[] )
+{
+    int error = -1;
+    eNotebook auxNotebook;
+
+    if(list!= NULL && len > 0)
+    {
+        for(int i = 0; i < len-1; i++)
+        {
+            for(int j = i + 1; j < len; j++)
+            {
+                if(strcmp(marca[i].descripcion, marca[j].descripcion) > 0)
+                {
+                    auxNotebook = list[i];
+                    list[i] = list[j];
+                    list[j] = auxNotebook;
+                }
+                else if(strcmp(marca[i].descripcion, marca[j].descripcion) == 0 && list[i].precio < list[j].precio)
+                {
+                    auxNotebook = list[i];
+                    list[i] = list[j];
+                    list[j] = auxNotebook;
+                }
+            }
+        }
+        error = 0;
 
     }
 

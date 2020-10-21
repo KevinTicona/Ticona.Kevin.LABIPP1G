@@ -9,7 +9,13 @@
 #include "servicio.h"
 #include "trabajo.h"
 
-
+/** \brief Muestra el listado de Marcas
+ *
+ * \param marcas[] eMarca
+ * \param len int
+ * \return int
+ *
+ */
 int mostrarMarcas(eMarca marcas[], int len)
 {
     int error = -1;
@@ -29,11 +35,25 @@ int mostrarMarcas(eMarca marcas[], int len)
     return error;
 }
 
+/** \brief Muestra Una Marca
+ *
+ * \param marca eMarca
+ * \return void
+ *
+ */
 void mostrarMarca(eMarca marca)
 {
     printf("  %d    %20s\n", marca.id, marca.descripcion);
 }
 
+/** \brief Recorre el vector y buscar un ID
+ *
+ * \param list[] eMarca
+ * \param len int
+ * \param id int
+ * \return int
+ *
+ */
 int findMarcaById(eMarca list[], int len, int id)
 {
     int indice = -1;
@@ -52,6 +72,15 @@ int findMarcaById(eMarca list[], int len, int id)
     return indice;
 }
 
+/** \brief Pide array, el tamaño y el id, y devuelve  0 si esta todo ok, y -1 si algo salio mal
+ *
+ * \param lista[] eMarca
+ * \param len int
+ * \param ID int
+ * \param descripcion[] char
+ * \return int
+ *
+ */
 int obtenerDescripcionMarca(eMarca lista[], int len, int ID, char descripcion[])
 {
     int error = -1;

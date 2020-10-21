@@ -8,3 +8,4 @@ typedef struct{
 }eFecha;
 
 #endif // FECHA_H_INCLUDED
+int valFecha( int dia, int mes, int anio);

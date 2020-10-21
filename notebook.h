@@ -20,3 +20,4 @@ int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo
 int findNotebookById(eNotebook list[], int len,int id);
 int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT);
 int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT);
+int ordenarNotebooks(eNotebook list[], int len,eMarca marca[] );

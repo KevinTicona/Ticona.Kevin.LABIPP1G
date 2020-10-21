@@ -9,6 +9,13 @@
 #include "servicio.h"
 #include "trabajo.h"
 
+/** \brief Muestra el array de Tipos
+ *
+ * \param tipos[] eTipo
+ * \param len int
+ * \return int
+ *
+ */
 int mostrarTipos(eTipo tipos[], int len)
 {
     int error = -1;
@@ -28,12 +35,18 @@ int mostrarTipos(eTipo tipos[], int len)
     return error;
 }
 
+/** \brief Muestra un Tipo
+ *
+ * \param tipo eTipo
+ * \return void
+ *
+ */
 void mostrarTipo(eTipo tipo)
 {
     printf("  %d    %20s\n", tipo.id, tipo.descripcion);
 }
 
-
+// recorre el vector en busca de un ID
 int findTipoById(eTipo list[], int len, int id)
 {
     int indiceId = -1;
@@ -52,6 +65,16 @@ int findTipoById(eTipo list[], int len, int id)
 }
 
 
+/** \brief Pide el array eTipo, tamaño y id, busca en el array eTipo el id
+ *    y guarda la descripcion en el char descripcion
+ *
+ * \param lista[] eTipo
+ * \param len int
+ * \param ID int
+ * \param descripcion[] char
+ * \return int
+ *
+ */
 int obtenerDescripcionTipo(eTipo lista[], int len, int ID, char descripcion[])
 {
     int error = -1;

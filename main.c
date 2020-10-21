@@ -13,7 +13,7 @@
 #define TAM_T 4
 #define TAM_M 4
 #define TAM_S 4
-#define TAM 10
+#define TAM 3
 
 int main()
 {
@@ -22,10 +22,12 @@ int main()
 
     int validNewNotebook;
     int validModificacion;
-    int idNotebook;
+    int idNotebook = 0;
+    int idTrabajo = 10000;
     int validBaja;
 
     eNotebook listNotebooks[TAM];
+    eTrabajo listTrabajos [TAM];
 
     eTipo tiposDeNotebooks[TAM_T] =
     {
@@ -52,6 +54,7 @@ int main()
     };
 
     initNotebooks(listNotebooks,TAM);
+    initTrabajos(listTrabajos,TAM);
 
     do
     {
@@ -59,7 +62,6 @@ int main()
         {
 
         case 'a':
-
             validNewNotebook = altaNotebook(listNotebooks,TAM,idNotebook,tiposDeNotebooks,TAM_T,marcasDeNotebooks,TAM_M);
             if(validNewNotebook == 0)
             {
@@ -104,7 +106,8 @@ int main()
             }
             break;
         case 'd':
-
+            ordenarNotebooks(listNotebooks,TAM,marcasDeNotebooks);
+            mostrarNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T);
             break;
         case 'e':
             mostrarMarcas(marcasDeNotebooks,TAM_M);
@@ -116,8 +119,10 @@ int main()
             mostrarServicios(serviciosDeNotebooks,TAM_S);
             break;
         case 'h':
+            altaTrabajo(listTrabajos,listNotebooks,TAM,idTrabajo,serviciosDeNotebooks,TAM_S,tiposDeNotebooks,TAM_T,marcasDeNotebooks,TAM_M);
             break;
         case 'i':
+            mostrarTrabajos(listTrabajos,serviciosDeNotebooks,TAM_S,listNotebooks,TAM);
             break;
         case 'z':
             printf("Confirma salida?: ");
