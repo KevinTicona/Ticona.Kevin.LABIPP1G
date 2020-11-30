@@ -8,12 +8,17 @@
 #include "notebook.h"
 #include "servicio.h"
 #include "trabajo.h"
+#include "cliente.h"
+#include "informes.h"
 
 
 #define TAM_T 4
 #define TAM_M 4
 #define TAM_S 4
-#define TAM 3
+#define TAM_C 4
+#define TAM_W 10
+
+#define TAM 10
 
 int main()
 {
@@ -22,12 +27,16 @@ int main()
 
     int validNewNotebook;
     int validModificacion;
+    int validNewTrabajo;
+    int total = 0;;
     int idNotebook = 0;
     int idTrabajo = 10000;
+    int idCliente = 3000;
     int validBaja;
 
     eNotebook listNotebooks[TAM];
     eTrabajo listTrabajos [TAM];
+    eCliente listClientes[TAM];
 
     eTipo tiposDeNotebooks[TAM_T] =
     {
@@ -42,7 +51,7 @@ int main()
         {1000, "Compaq"},
         {1001, "Asus"},
         {1002, "Acer"},
-        {1003, "HP"}
+        {1003, "Hp"}
     };
 
     eServicio serviciosDeNotebooks[TAM_S] =
@@ -53,8 +62,17 @@ int main()
         {20003, "Fuente",600}
     };
 
+    eCliente clientesDeNotebooks[TAM_C] =
+    {
+        {3000, "Florencia", 'f'},
+        {3001, "Ovaldo", 'm'},
+        {3002, "Pedro", 'm'},
+        {3003, "Caterine", 'f'}
+    };
+
     initNotebooks(listNotebooks,TAM);
     initTrabajos(listTrabajos,TAM);
+    initClientes(listClientes, TAM);
 
     do
     {
@@ -62,21 +80,23 @@ int main()
         {
 
         case 'a':
-            validNewNotebook = altaNotebook(listNotebooks,TAM,idNotebook,tiposDeNotebooks,TAM_T,marcasDeNotebooks,TAM_M);
+            validNewNotebook = altaNotebook(listNotebooks,TAM,idNotebook,tiposDeNotebooks,TAM_T,marcasDeNotebooks,TAM_M, clientesDeNotebooks, TAM_C);
             if(validNewNotebook == 0)
             {
                 printf("\nOperacion exitosa\n");
                 idNotebook++;
+                idCliente++;
+                total++;
             }
             else
             {
                 printf("\nHa ocurrido un problema. Intente nuevamente.\n");
             }
-            mostrarNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T);
+            mostrarNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T,clientesDeNotebooks,TAM_C);
             break;
         case 'b':
 
-            validModificacion = modificarNotebook(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T);
+            validModificacion = modificarNotebook(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T,clientesDeNotebooks,TAM_C);
             if(!validModificacion)
             {
                 printf("\nModificacion exitosa.\n");
@@ -91,10 +111,11 @@ int main()
             }
             break;
         case 'c':
-            validBaja = bajaNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T);
+            validBaja = bajaNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T,clientesDeNotebooks,TAM_C);
             if(!validBaja)
             {
                 printf("\nBaja exitosa.\n");
+                total--;
             }
             else if(validBaja == 1)
             {
@@ -106,8 +127,8 @@ int main()
             }
             break;
         case 'd':
-            ordenarNotebooks(listNotebooks,TAM,marcasDeNotebooks);
-            mostrarNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T);
+            ordenarNotebooks(listNotebooks,total,marcasDeNotebooks);
+            mostrarNotebooks(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T,clientesDeNotebooks,TAM_C);
             break;
         case 'e':
             mostrarMarcas(marcasDeNotebooks,TAM_M);
@@ -119,10 +140,22 @@ int main()
             mostrarServicios(serviciosDeNotebooks,TAM_S);
             break;
         case 'h':
-            altaTrabajo(listTrabajos,listNotebooks,TAM,idTrabajo,serviciosDeNotebooks,TAM_S,tiposDeNotebooks,TAM_T,marcasDeNotebooks,TAM_M);
+            validNewTrabajo = altaTrabajo(listTrabajos,listNotebooks,TAM,idTrabajo,serviciosDeNotebooks,TAM_S,tiposDeNotebooks,TAM_T,marcasDeNotebooks,TAM_M,clientesDeNotebooks,TAM_C);
+            if(validNewTrabajo == 0)
+            {
+                printf("\nOperacion exitosa\n");
+                idTrabajo++;
+            }
+            else
+            {
+                printf("\nHa ocurrido un problema. Intente nuevamente.\n");
+            }
             break;
         case 'i':
-            mostrarTrabajos(listTrabajos,serviciosDeNotebooks,TAM_S,listNotebooks,TAM);
+            mostrarTrabajos(listTrabajos,TAM_W,serviciosDeNotebooks,TAM_S,listNotebooks,TAM,clientesDeNotebooks,TAM_C);
+            break;
+        case 'j':
+            menu_Informes(listNotebooks,TAM,marcasDeNotebooks,TAM_M,tiposDeNotebooks,TAM_T,clientesDeNotebooks,TAM_C,serviciosDeNotebooks, TAM_S,listTrabajos,TAM_W);
             break;
         case 'z':
             printf("Confirma salida?: ");

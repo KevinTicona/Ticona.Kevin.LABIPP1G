@@ -8,6 +8,7 @@
 #include "notebook.h"
 #include "servicio.h"
 #include "trabajo.h"
+#include "cliente.h"
 
 
 char menu()
@@ -26,6 +27,7 @@ char menu()
     printf("G- Listar Servicios.\n");
     printf("H- Alta Trabajo.\n");
     printf("I- Listar Trabajos.\n");
+    printf("J- Menu Informes.\n");
     printf("Z- Salir.\n");
     printf("\n Eliga una de las Opciones: ");
     fflush(stdin);
@@ -47,11 +49,12 @@ char menu()
  * \return int
  *
  */
-int altaNotebook(eNotebook list[], int tam, int ID, eTipo tipo[], int tamT, eMarca marca[], int tamM)
+int altaNotebook(eNotebook list[], int tam, int ID, eTipo tipo[], int tamT, eMarca marca[], int tamM, eCliente listCliente[], int tamC)
 {
     eNotebook newNotebook;
     int validIdTipo;
     int validIdMarca;
+    int validIdCliente;
 
     if(list != NULL && tam > 0 && tam <= 100 && tipo != NULL && tamT > 0 && marca != NULL && tamM > 0)
     {
@@ -105,6 +108,20 @@ int altaNotebook(eNotebook list[], int tam, int ID, eTipo tipo[], int tamT, eMar
                 printf("\nIngrese el Precio: ");
                 fflush(stdin);
                 scanf("%f", &newNotebook.precio);
+
+                //cliente
+                mostrarClientes(listCliente,tamC);
+                printf("\nIngrese el Id del Cliente: \n");
+                fflush(stdin);
+                scanf("%d", &newNotebook.idCliente);
+                validIdCliente = findClienteById(listCliente, tamC, newNotebook.idCliente);
+                while ( validIdCliente < 0)
+                {
+                    printf("\nDato invalido. Ingrese el Id del Cliente: \n");
+                    fflush(stdin);
+                    scanf("%d", &newNotebook.idCliente);
+                    validIdCliente = findClienteById(listCliente, tamC, newNotebook.idCliente);
+                }
 
                 list[i] = newNotebook;
                 return 0;
@@ -172,22 +189,26 @@ int initNotebooks(eNotebook list[], int len)
  * \return void
  *
  */
-void mostrarNotebook(eNotebook note, eMarca marca[], int tamM, eTipo tipo[], int tamT)
+void mostrarNotebook(eNotebook note, eMarca marca[], int tamM, eTipo tipo[], int tamT, eCliente listCliente[], int tamC)
 {
     char descMarca[20];
     char descTipo[20];
+    char descCliente[20];
 
     obtenerDescripcionMarca(marca, tamM, note.idMarca, descMarca);
 
     obtenerDescripcionTipo(tipo, tamT, note.idTipo, descTipo);
 
+    obtenerDescripcionCliente(listCliente, tamC, note.idCliente, descCliente);
 
-    printf("%5d   %10s         %10s          %10s                %4.2f\n",
+
+    printf("%5d   %10s         %10s          %10s                %4.2f       %10s\n",
            note.id,
            note.modelo,
            descMarca,
            descTipo,
-           note.precio
+           note.precio,
+           descCliente
           );
 }
 
@@ -202,20 +223,20 @@ void mostrarNotebook(eNotebook note, eMarca marca[], int tamM, eTipo tipo[], int
  * \return int
  *
  */
-int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo tipos[], int tamT)
+int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo tipos[], int tamT, eCliente listCliente[], int tamC)
 {
-    if(list != NULL && tam > 0 && tam <= 100 && marcas != NULL && tamM > 0 && tipos != NULL && tamT > 0)
+    if(list != NULL && tam > 0 && tam <= 100 && marcas != NULL && tamM > 0 && tipos != NULL && tamT > 0 && listCliente != NULL && tamC > 0 )
     {
         //system("cls");
-        printf("\n                             *** Listado de Notebooks ***                         \n");
-        printf("----------------------------------------------------------------------------------------\n");
-        printf("  ID          Modelo              Marca              Tipo                Precio      \n");
-        printf("----------------------------------------------------------------------------------------\n");
+        printf("\n                             *** Listado de Notebooks ***                                           \n");
+        printf("------------------------------------------------------------------------------------------------------\n");
+        printf(" ID           Modelo              Marca              Tipo                Precio            Cliente     \n");
+        printf("-------------------------------------------------------------------------------------------------------\n");
         for(int i = 0; i < tam; i++)
         {
             if(list[i].isEmpty != 1)
             {
-                mostrarNotebook(list[i], marcas, tamM, tipos, tamT);
+                mostrarNotebook(list[i], marcas, tamM, tipos, tamT,listCliente, tamC);
             }
         }
         printf("\n\n");
@@ -237,7 +258,7 @@ int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo
  * \return int
  *
  */
-int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT)
+int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT, eCliente listCliente[], int tamC)
 {
     eNotebook newNotebook;
     int error = -1;
@@ -250,9 +271,9 @@ int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo
     if(list != NULL && tam > 0 && tam <= 100 && marca != NULL && tipo != NULL && tamM > 0 && tamT > 0)
     {
         system("cls");
-        printf("                    Modificar Notebooks                     \n");
-        printf("---------------------------------------------------------------------------------");
-        mostrarNotebooks(list,tam,marca,tamM,tipo,tamT);
+        printf("                                           Modificar Notebooks                          \n");
+        printf("------------------------------------------------------------------------------------------------------\n");
+        mostrarNotebooks(list,tam,marca,tamM,tipo,tamT,listCliente,tamC);
         printf("\nIngrese ID de la Notebook que desea modificar: ");
         fflush(stdin);
         scanf("%d", &id);
@@ -265,11 +286,11 @@ int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo
         else
         {
             system("cls");
-            printf("                                     Notebooks      \n");
-            printf("--------------------------------------------------------------------------------\n");
-            printf("  ID          Modelo              Marca            Tipo               Precio      \n");
-            printf("--------------------------------------------------------------------------------\n");
-            mostrarNotebook(list[indice], marca, tamM, tipo, tamT);
+            printf("                                              Notebooks      \n");
+            printf("-------------------------------------------------------------------------------------------------------\n");
+            printf(" ID           Modelo              Marca              Tipo                Precio            Cliente     \n");
+            printf("-------------------------------------------------------------------------------------------------------\n");
+            mostrarNotebook(list[indice], marca, tamM, tipo, tamT,listCliente,tamC);
             printf("\nMODIFICAR:\n");
             printf("1. Precio\n");
             printf("2. Tipo\n");
@@ -384,30 +405,31 @@ int findNotebookById(eNotebook list[], int len,int id)
  * \return int
  *
  */
-int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT)
+int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT, eCliente listCliente[], int tamC)
 {
     int error = -1;
     int id;
     int indice;
     char confirmation;
     //La función podría devolver 3 enteros (0 - ok, -1 error, 1 ok pero no borró a nadie
-    if(list != NULL && tam > 0 && tam <= 100 && marca != NULL && tamM > 0 && tipo != NULL && tamT > 0)
+    if(list != NULL && tam > 0 && tam <= 100 && marca != NULL && tamM > 0 && tipo != NULL && tamT > 0 && listCliente != NULL && tamC > 0)
     {
-        mostrarNotebooks(list,tam,marca,tamM,tipo,tamT);
-        printf("\nIngrese ID de la bicicleta a eliminar: ");
-        fflush(stdin);
-        scanf("%d", &id);
-        indice = findNotebookById(list, tam, id);
-        if(indice == -1)
-        {
-            printf("No hay bicicletas con ese ID\n");
+        mostrarNotebooks(list,tam,marca,tamM,tipo,tamT,listCliente,tamC);
+                         printf("\nIngrese ID de la Notebook que desea eliminar: ");
+                         fflush(stdin);
+                         scanf("%d", &id);
+                         indice = findNotebookById(list, tam, id);
+                         if(indice == -1)
+    {
+        printf("No hay bicicletas con ese ID\n");
         }
         else
         {
-            printf("-------------------------------------------------------------------------------------------\n");
-            printf("  ID            Modelo                 Marca               Tipo               Precio      \n");
-            printf("-------------------------------------------------------------------------------------------\n");
-            mostrarNotebook(list[indice],marca,tamM,tipo,tamT);
+            system("cls");
+            printf("-------------------------------------------------------------------------------------------------------\n");
+            printf(" ID           Modelo              Marca              Tipo                Precio            Cliente     \n");
+            printf("-------------------------------------------------------------------------------------------------------\n");
+            mostrarNotebook(list[indice],marca,tamM,tipo,tamT,listCliente,tamC);
             printf("Confirmar baja? s - si; n - no\n");
             fflush(stdin);
             scanf("%c", &confirmation);
@@ -444,10 +466,11 @@ int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tip
  * \return int
  *
  */
-int ordenarNotebooks(eNotebook list[], int len,eMarca marca[] )
+int ordenarNotebooks(eNotebook list[], int len, eMarca marca[])
 {
     int error = -1;
     eNotebook auxNotebook;
+
 
     if(list!= NULL && len > 0)
     {
@@ -461,7 +484,7 @@ int ordenarNotebooks(eNotebook list[], int len,eMarca marca[] )
                     list[i] = list[j];
                     list[j] = auxNotebook;
                 }
-                else if(strcmp(marca[i].descripcion, marca[j].descripcion) == 0 && list[i].precio < list[j].precio)
+                else if(strcmp(marca[i].descripcion, marca[j].descripcion) == 0 && list[i].precio > list[j].precio)
                 {
                     auxNotebook = list[i];
                     list[i] = list[j];
@@ -475,3 +498,4 @@ int ordenarNotebooks(eNotebook list[], int len,eMarca marca[] )
 
     return error;
 }
+

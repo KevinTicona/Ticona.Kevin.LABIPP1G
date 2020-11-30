@@ -93,3 +93,137 @@
 	"servicio.h"
 	"trabajo.h"
 
+1606669741 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\fecha.c
+	<stdio.h>
+	<stdlib.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1606669741 c:\users\keni_\desktop\ticona.kevin.labipp1g\tipo.h
+
+1606669741 c:\users\keni_\desktop\ticona.kevin.labipp1g\fecha.h
+
+1606669741 c:\users\keni_\desktop\ticona.kevin.labipp1g\marca.h
+
+1606708541 c:\users\keni_\desktop\ticona.kevin.labipp1g\notebook.h
+	"cliente.h"
+
+1606669741 c:\users\keni_\desktop\ticona.kevin.labipp1g\servicio.h
+
+1606717877 c:\users\keni_\desktop\ticona.kevin.labipp1g\trabajo.h
+	"fecha.h"
+
+1606771203 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+	"cliente.h"
+	"informes.h"
+
+1606669741 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\marca.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1606771236 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\notebook.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+	"cliente.h"
+
+1606669741 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1606669741 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1606765562 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"fecha.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+
+1606708055 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"cliente.h"
+	"validaciones.h"
+
+1606708055 c:\users\keni_\desktop\ticona.kevin.labipp1g\cliente.h
+
+1606699237 c:\users\keni_\desktop\ticona.kevin.labipp1g\validaciones.h
+
+1606698946 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\validaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"validaciones.h"
+
+1606770701 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\informes.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"tipo.h"
+	"marca.h"
+	"notebook.h"
+	"servicio.h"
+	"trabajo.h"
+	"cliente.h"
+	"informes.h"
+	"validaciones.h"
+
+1606771014 c:\users\keni_\desktop\ticona.kevin.labipp1g\informes.h
+
