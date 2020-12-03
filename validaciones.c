@@ -124,22 +124,3 @@ int validations_isValidEdad(char* edad)
     return 0;
 }
 
-int validations_isValidType(char* type)
-{
-    int len = strlen(type);
-    if(len < 50 && len > 0)
-    {
-        strupr(type);
-        if(
-            strcmp(type, "BMX") == 0 ||
-            strcmp(type, "PLAYERA") == 0 ||
-            strcmp(type, "MTB") == 0 ||
-            strcmp(type, "PASEO") == 0
-        )
-        {
-            return 1;
-        }
-    }
-
-    return 0;
-}

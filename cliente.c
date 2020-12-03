@@ -5,6 +5,13 @@
 #include "cliente.h"
 #include "validaciones.h"
 
+/** \brief retorna 0 si esta todo ok, si algo sale mal -1
+ *
+ * \param lista eCliente*
+ * \param tam int
+ * \return int
+ *
+ */
 int initClientes(eCliente* lista, int tam)
 {
     if(lista != NULL && tam > 0 && tam <= 10000)
@@ -19,6 +26,14 @@ int initClientes(eCliente* lista, int tam)
     return -1;
 }
 
+/** \brief si algo sale mal retorna -1, si todo sale Ok retorna el id buscando en eCliente
+ *
+ * \param lista eCliente*
+ * \param tam int
+ * \param id int
+ * \return int
+ *
+ */
 int findClienteById(eCliente* lista, int tam, int id)
 {
     int indiceId = -1;
@@ -61,6 +76,13 @@ int clientes_hardcodear(eCliente* lista, int tam, int numeroDeClientes)
     return returns;
 }
 */
+/** \brief Muestra el contenido en eCliente
+ *
+ * \param lista eCliente*
+ * \param tam int
+ * \return int
+ *
+ */
 int mostrarClientes(eCliente* lista, int tam)
 {
     if(lista != NULL && tam > 0 && tam <= 10000)
@@ -83,6 +105,12 @@ int mostrarClientes(eCliente* lista, int tam)
     return -1;
 }
 
+/** \brief Muestra un Cliente
+ *
+ * \param cliente eCliente
+ * \return void
+ *
+ */
 void mostrarCliente(eCliente cliente)
 {
 
@@ -93,6 +121,15 @@ void mostrarCliente(eCliente cliente)
           );
 }
 
+/** \brief si sale todo Ok devuelve 0, si algo salio mal -1
+ *
+ * \param lista[] eCliente
+ * \param tam int
+ * \param ID int
+ * \param nombre[] char
+ * \return int
+ *
+ */
 int obtenerDescripcionCliente(eCliente lista[], int tam, int ID, char nombre[])
 {
     int error = -1;

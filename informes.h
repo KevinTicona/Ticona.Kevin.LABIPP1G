@@ -2,6 +2,7 @@
 #define INFORMES_H_INCLUDED
 
 
+
 int menu_Informes(eNotebook listNote[], int tam, eMarca listMarcas[], int tamM, eTipo listTipos[], int tamT, eCliente listCliente[], int tamC, eServicio listServi[], int tamS, eTrabajo listTrabajo[], int tamW);
 void informes_subMenu();
 int informe_noteboookPorTipoSeleccionado(eNotebook listNotes[], int tamN, eTipo listTipos[], int tamT, eMarca listMarcas[], int tamM, eCliente listClientes[], int tamC);

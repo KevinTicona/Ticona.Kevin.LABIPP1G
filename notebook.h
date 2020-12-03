@@ -24,3 +24,4 @@ int modificarNotebook(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo
 int bajaNotebooks(eNotebook list[], int tam, eMarca marca[], int tamM, eTipo tipo[], int tamT, eCliente listCliente[], int tamC);
 int ordenarNotebooks(eNotebook list[], int len,eMarca marca[] );
 void mostrarNotebook(eNotebook note, eMarca marca[], int tamM, eTipo tipo[], int tamT, eCliente listCliente[], int tamC);
+int obtenerDescripcionModelo(eNotebook lista[], int len, int ID, char descripcion[]);

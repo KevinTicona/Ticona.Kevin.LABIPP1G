@@ -118,21 +118,19 @@ int initTrabajos(eTrabajo list[], int len)
  * \return void
  *
  */
-void mostrarTrabajo( eTrabajo work,eNotebook note[], eServicio servi[], int tamS, eCliente listCliente[], int tamC)
+void mostrarTrabajo( eTrabajo work,eNotebook note[],int tamN, eServicio servi[], int tamS)
 {
 
     char descServi[20];
-    char descCliente[20];
+    char descModelo[20];
 
     obtenerDescripcionServi(servi,tamS,work.idServicio,descServi);
-    obtenerDescripcionCliente(listCliente, tamC, note->idCliente, descCliente);
+    obtenerDescripcionModelo(note, tamN, work.idNotebook, descModelo );
 
-    printf("%7d       %10s       %10s         %8.2f           %10s              %2d/%2d/%4d\n",
+    printf("%7d      %10s             %10s           %2d/%2d/%4d\n",
            work.id,
-           note->modelo,
+           descModelo,
            descServi,
-           servi->precio,
-           descCliente,
            work.fecha.dia,
            work.fecha.mes,
            work.fecha.anio
@@ -154,15 +152,15 @@ int mostrarTrabajos(eTrabajo listTra[],int tamW, eServicio listServi[], int tamS
     if(listTra != NULL && listServi!=NULL && tamS>0  && listNot!=NULL && tam > 0 &&listCliente != NULL && tamC > 0 )
     {
         //system("cls");
-        printf("\n                                    *** Listado de Trabajos ***                         \n");
-        printf("--------------------------------------------------------------------------------------------------------------\n");
-        printf(" IdServi       Modelo          Servicio          Precio del Servicio     Cliente           Fecha      \n");
-        printf("--------------------------------------------------------------------------------------------------------------\n");
+        printf("\n                    *** Listado de Trabajos ***             \n");
+        printf("-----------------------------------------------------------------------\n");
+        printf(" IdServi            Modelo            Servicio              Fecha      \n");
+        printf("------------------------------------------------------------------------\n");
         for(int i = 0; i < tam; i++)
         {
             if(listTra[i].isEmpty != 1)
             {
-                mostrarTrabajo(listTra[i],listNot,listServi,tamS,listCliente, tamC);
+                mostrarTrabajo(listTra[i],listNot,tam,listServi,tamS);
             }
         }
         printf("\n\n");

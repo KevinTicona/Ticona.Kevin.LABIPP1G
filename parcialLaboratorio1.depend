@@ -109,15 +109,15 @@
 
 1606669741 c:\users\keni_\desktop\ticona.kevin.labipp1g\marca.h
 
-1606708541 c:\users\keni_\desktop\ticona.kevin.labipp1g\notebook.h
+1606999217 c:\users\keni_\desktop\ticona.kevin.labipp1g\notebook.h
 	"cliente.h"
 
 1606669741 c:\users\keni_\desktop\ticona.kevin.labipp1g\servicio.h
 
-1606717877 c:\users\keni_\desktop\ticona.kevin.labipp1g\trabajo.h
+1606999145 c:\users\keni_\desktop\ticona.kevin.labipp1g\trabajo.h
 	"fecha.h"
 
-1606771203 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\main.c
+1607005595 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\main.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -143,7 +143,7 @@
 	"servicio.h"
 	"trabajo.h"
 
-1606771236 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\notebook.c
+1606995667 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\notebook.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -156,7 +156,7 @@
 	"trabajo.h"
 	"cliente.h"
 
-1606669741 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\servicio.c
+1606942324 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\servicio.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -180,7 +180,7 @@
 	"servicio.h"
 	"trabajo.h"
 
-1606765562 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\trabajo.c
+1606999186 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\trabajo.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>
@@ -211,7 +211,7 @@
 	<string.h>
 	"validaciones.h"
 
-1606770701 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\informes.c
+1607007286 source:c:\users\keni_\desktop\ticona.kevin.labipp1g\informes.c
 	<stdio.h>
 	<stdlib.h>
 	<ctype.h>

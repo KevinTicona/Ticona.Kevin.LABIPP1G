@@ -15,9 +15,9 @@
 #define TAM_T 4
 #define TAM_M 4
 #define TAM_S 4
+
 #define TAM_C 4
 #define TAM_W 10
-
 #define TAM 10
 
 int main()
@@ -29,14 +29,14 @@ int main()
     int validModificacion;
     int validNewTrabajo;
     int total = 0;;
-    int idNotebook = 0;
+    int idNotebook = 20;
     int idTrabajo = 10000;
     int idCliente = 3000;
     int validBaja;
 
     eNotebook listNotebooks[TAM];
-    eTrabajo listTrabajos [TAM];
-    eCliente listClientes[TAM];
+    eTrabajo listTrabajos [TAM_W];
+    eCliente listClientes[TAM_C];
 
     eTipo tiposDeNotebooks[TAM_T] =
     {
@@ -71,8 +71,8 @@ int main()
     };
 
     initNotebooks(listNotebooks,TAM);
-    initTrabajos(listTrabajos,TAM);
-    initClientes(listClientes, TAM);
+    initTrabajos(listTrabajos,TAM_W);
+    initClientes(listClientes, TAM_C);
 
     do
     {

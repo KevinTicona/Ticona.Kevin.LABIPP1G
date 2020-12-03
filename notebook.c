@@ -227,7 +227,7 @@ int mostrarNotebooks(eNotebook list[], int tam, eMarca marcas[], int tamM, eTipo
 {
     if(list != NULL && tam > 0 && tam <= 100 && marcas != NULL && tamM > 0 && tipos != NULL && tamT > 0 && listCliente != NULL && tamC > 0 )
     {
-        //system("cls");
+        system("cls");
         printf("\n                             *** Listado de Notebooks ***                                           \n");
         printf("------------------------------------------------------------------------------------------------------\n");
         printf(" ID           Modelo              Marca              Tipo                Precio            Cliente     \n");
@@ -499,3 +499,21 @@ int ordenarNotebooks(eNotebook list[], int len, eMarca marca[])
     return error;
 }
 
+int obtenerDescripcionModelo(eNotebook lista[], int len, int ID, char descripcion[])
+{
+    int error = -1;
+
+    if(lista != NULL && descripcion != NULL && len > 0)
+    {
+        for(int i = 0; i < len; i++)
+        {
+            if(lista[i].id == ID)
+            {
+                strcpy(descripcion, lista[i].modelo);
+                error = 0;
+                break;
+            }
+        }
+    }
+    return error;
+}

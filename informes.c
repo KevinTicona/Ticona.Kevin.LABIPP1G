@@ -11,6 +11,24 @@
 #include "informes.h"
 #include "validaciones.h"
 
+/** \brief Menu de Informes si esta todo bien devuelve 0, si algo salio mal devuelve -1.
+ *
+ * \param listNote[] eNotebook
+ * \param tam int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listCliente[] eCliente
+ * \param tamC int
+ * \param listServi[] eServicio
+ * \param tamS int
+ * \param listTrabajo[] eTrabajo
+ * \param tamW int
+ * \return int
+ *
+ */
+
 int menu_Informes(
     eNotebook listNote[],
     int tam,
@@ -51,10 +69,12 @@ int menu_Informes(
             case 3:
                 menu_prinfSubEncabezado();
                 informes_notebooksMasBaratas(listNote, tam);
+                mostrarNotebooks(listNote,tam, listMarcas, tamM, listTipos, tamT, listCliente, tamC);
                 break;
             case 4:
                 menu_prinfSubEncabezado();
                 informes_notebooksSeparadasPorMarca(listNote,tam, listMarcas,tamM, 1);
+                mostrarNotebooks(listNote,tam, listMarcas, tamM, listTipos, tamT, listCliente, tamC);
                 break;
             case 5:
                 menu_prinfSubEncabezado();
@@ -95,6 +115,11 @@ int menu_Informes(
     return error;
 }
 
+/** \brief Menu de Informes
+ *
+ * \return void
+ *
+ */
 void informes_subMenu()
 {
     system("cls");
@@ -102,17 +127,30 @@ void informes_subMenu()
     printf(" *** Menu de Informes *** \n");
     printf("1. Mostrar las notebooks del tipo seleccionado por el usuario.\n");
     printf("2. Mostrar notebooks de una marca seleccionada.\n");
-    printf("3. Informar la o las notebooks más baratas.\n");
+    printf("3. Informar la o las notebooks mas baratas.\n");
     printf("4. Mostrar un listado de las notebooks separadas por marca.\n");
     printf("5. Elegir un tipo y una marca y contar cuantas notebooks hay de ese tipo y esa marca.\n");
     printf("6. Mostrar la o las marcas más elegidas por los clientes.\n");
     printf("7. Pedir una notebook y mostrar todos los trabajos que se le hicieron a la misma.\n");
     printf("8. Pedir un notebook e informar la suma de los importes de los services se le hicieron a la misma\n");
-    printf("9. Pedir un servicio y mostrar las notebooks a las que se realizó ese servicio y la fecha.\n");
+    printf("9. Pedir un servicio y mostrar las notebooks a las que se realizo ese servicio y la fecha.\n");
     printf("10. Pedir una fecha y mostrar todos los servicios realizados en la misma.\n");
     printf("11. Volver al menu principal.\n");
 }
 
+/** \brief Muestra en Pantalla Notebooks por tipo seleccionado, si esta todo bien devuelve 0, si algo salio mas -1
+ *
+ * \param listNotes[] eNotebook
+ * \param tamN int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listClientes[] eCliente
+ * \param tamC int
+ * \return int
+ *
+ */
 int informe_noteboookPorTipoSeleccionado(eNotebook listNotes[], int tamN, eTipo listTipos[], int tamT, eMarca listMarcas[], int tamM, eCliente listClientes[], int tamC)
 {
     int error = -1;
@@ -145,31 +183,59 @@ int informe_noteboookPorTipoSeleccionado(eNotebook listNotes[], int tamN, eTipo 
     return error;
 }
 
+/** \brief Encabezado de Notebooks
+ *
+ * \return void
+ *
+ */
 void menu_printEncabezado()
 {
     system("cls");
-    printf("\n                                    *** Listado de Notebooks ***                                      \n");
-    printf("--------------------------------------------------------------------------------------------------------\n");
-    printf(" ID           Modelo              Marca              Tipo                Precio            Cliente      \n");
-    printf("--------------------------------------------------------------------------------------------------------\n");
+    printf("\n                     *** Listado de Notebooks ***                        \n");
+    printf("---------------------------------------------------------------------------\n");
+    printf(" IdServi            Modelo                Servicio              Fecha      \n");
+    printf("---------------------------------------------------------------------------\n");
 }
 
+/** \brief Encabezado de Notebook
+ *
+ * \return void
+ *
+ */
 void menu_prinfSubEncabezado()
 {
     printf("\n                                           *** Notebooks ***                                         \n");
     printf("--------------------------------------------------------------------------------------------------------\n");
 }
 
+/** \brief Encabezado de Trabajos
+ *
+ * \return void
+ *
+ */
 void menu_printEncabezadoTrabajos()
 {
     system("cls");
-    printf("\n                                    *** Listado de Trabajos ***                         \n");
-    printf("--------------------------------------------------------------------------------------------------------------\n");
-    printf(" IdServi       Modelo          Servicio          Precio del Servicio     Cliente           Fecha      \n");
-    printf("--------------------------------------------------------------------------------------------------------------\n");
+    printf("\n                    *** Listado de Trabajos ***                         \n");
+    printf("---------------------------------------------------------------------------\n");
+    printf(" IdServi            Modelo                Servicio              Fecha      \n");
+    printf("---------------------------------------------------------------------------\n");
 }
 
 
+/** \brief Muestra en pantalla por marca seleccionada, si esta todo bien devuelve 0, si algo salio mal -1
+ *
+ * \param listNotes[] eNotebook
+ * \param tamN int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listClientes[] eCliente
+ * \param tamC int
+ * \return int
+ *
+ */
 int informe_noteboookPorMarcaSeleccionado(eNotebook listNotes[], int tamN, eTipo listTipos[], int tamT, eMarca listMarcas[], int tamM, eCliente listClientes[], int tamC)
 {
     int error = -1;
@@ -202,10 +268,17 @@ int informe_noteboookPorMarcaSeleccionado(eNotebook listNotes[], int tamN, eTipo
     return error;
 }
 
+/** \brief Lista Las notebooks mas baratas, si esta todo bien devuelve 0, si algo salio mal -1
+ *
+ * \param listNote[] eNotebook
+ * \param tam int
+ * \return int
+ *
+ */
 int informes_notebooksMasBaratas(eNotebook listNote[],int tam)
 {
     int error = -1;
-    eNotebook auxBici;
+    eNotebook auxNote;
 
     if(listNote != NULL && tam > 0)
     {
@@ -215,9 +288,9 @@ int informes_notebooksMasBaratas(eNotebook listNote[],int tam)
             {
                 if(listNote[i].precio > listNote[j].precio)
                 {
-                    auxBici = listNote[i];
+                    auxNote = listNote[i];
                     listNote[i] = listNote[j];
-                    listNote[j] = auxBici;
+                    listNote[j] = auxNote;
                 }
             }
         }
@@ -227,6 +300,16 @@ int informes_notebooksMasBaratas(eNotebook listNote[],int tam)
     return error;
 }
 
+/** \brief Lista las Notebooks por marca, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listNote[] eNotebook
+ * \param tam int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param criterio int
+ * \return int
+ *
+ */
 int informes_notebooksSeparadasPorMarca(eNotebook listNote[], int tam, eMarca listMarcas[], int tamM, int criterio)
 {
     int error = -1;
@@ -257,6 +340,19 @@ int informes_notebooksSeparadasPorMarca(eNotebook listNote[], int tam, eMarca li
     return error;
 }
 
+/** \brief Lista las notebooks por tipo y marca seleccionada por el usuario, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listNotes[] eNotebook
+ * \param tamN int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listClientes[] eCliente
+ * \param tamC int
+ * \return int
+ *
+ */
 int informes_notebooksContarPorTipoyMarca(eNotebook listNotes[], int tamN, eTipo listTipos[], int tamT, eMarca listMarcas[], int tamM, eCliente listClientes[], int tamC)
 {
     int error = -1;
@@ -325,6 +421,15 @@ int informes_notebooksContarPorTipoyMarca(eNotebook listNotes[], int tamN, eTipo
     return error;
 }
 
+/** \brief lista las notebooks mas elegidas, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listNotes eNotebook*
+ * \param tamN int
+ * \param listMarcas eMarca*
+ * \param tamM int
+ * \return int
+ *
+ */
 int informes_notebooksMasElegidas(eNotebook* listNotes, int tamN, eMarca* listMarcas,int tamM)
 {
     int error = -1;
@@ -383,7 +488,23 @@ int informes_notebooksMasElegidas(eNotebook* listNotes, int tamN, eMarca* listMa
     return error;
 }
 
-
+/** \brief Lista todos los trabajos que se realizaron a una notebook seleccionada por el usuario, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listNotes[] eNotebook
+ * \param tamN int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listClientes[] eCliente
+ * \param tamC int
+ * \param listServi[] eServicio
+ * \param tamS int
+ * \param listTrabajo[] eTrabajo
+ * \param tamW int
+ * \return int
+ *
+ */
 int informes_todosLosTrabajosNote(
     eNotebook listNotes[],
     int tamN,
@@ -418,9 +539,8 @@ int informes_todosLosTrabajosNote(
         tamS > 0
     )
     {
-        //Pedir bici
+        //Pedir Notebook
         system("cls");
-        printf("\n Ingrese ID bicicleta\n");
         mostrarNotebooks(
             listNotes,
             tamN,
@@ -451,14 +571,14 @@ int informes_todosLosTrabajosNote(
                             );
         }
 
-        //listar trabajos que se le hicieron a esa bicicleta
+        //listar trabajos que se le hicieron a esa Notebook
         menu_printEncabezadoTrabajos();
 
         for(int i = 0; i < tamW; i++)
         {
             if(listTrabajo[i].idNotebook == noteValido)
             {
-                mostrarTrabajo(listTrabajo[i],listNotes,listServi,tamS,listClientes,tamC);
+                mostrarTrabajo(listTrabajo[i],listNotes,tamN,listServi,tamS);
             }
         }
         error = 0;
@@ -466,6 +586,23 @@ int informes_todosLosTrabajosNote(
     return error;
 }
 
+/** \brief Suma todos los servicios que se realizaron a la notebook seleccionada por el usuario, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listNotes[] eNotebook
+ * \param tamN int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listClientes[] eCliente
+ * \param tamC int
+ * \param listServi[] eServicio
+ * \param tamS int
+ * \param listTrabajo[] eTrabajo
+ * \param tamW int
+ * \return int
+ *
+ */
 int informes_serviciosSumaPrecio(
     eNotebook listNotes[],
     int tamN,
@@ -542,6 +679,7 @@ int informes_serviciosSumaPrecio(
             if(listTrabajo[i].idNotebook == noteValida)
             {
                 idServicioActual = listTrabajo[i].idServicio;
+
                 for(int j = 0; j < tamS; j++)
                 {
                     if(listServi[j].id == idServicioActual)
@@ -552,6 +690,13 @@ int informes_serviciosSumaPrecio(
             }
 
         }
+        for(int i = 0; i < tamW; i++)
+        {
+            if(listTrabajo[i].idNotebook == noteValida)
+            {
+                mostrarTrabajo(listTrabajo[i],listNotes,tamN,listServi,tamS);
+            }
+        }
 
         printf("\nTotal trabajos realizados a la Notebook seleccionada es de: $ %.2f\n", acumPrecio);
         error = 0;
@@ -559,6 +704,23 @@ int informes_serviciosSumaPrecio(
     return error;
 }
 
+/** \brief Lista por pantalla todos los servicios que se realizaron a la notebook seleccionada por el usuario, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listNotes[] eNotebook
+ * \param tamN int
+ * \param listTipos[] eTipo
+ * \param tamT int
+ * \param listMarcas[] eMarca
+ * \param tamM int
+ * \param listClientes[] eCliente
+ * \param tamC int
+ * \param listServi[] eServicio
+ * \param tamS int
+ * \param listTrabajo[] eTrabajo
+ * \param tamW int
+ * \return int
+ *
+ */
 int informes_serviciosYMostrar(
     eNotebook listNotes[],
     int tamN,
@@ -596,10 +758,7 @@ int informes_serviciosYMostrar(
 
         //pedir un servicio
         system("cls");
-        mostrarServicios(
-            listServi,
-            tamS
-        );
+        mostrarServicios(listServi, tamS);
         printf("\nIngrese Id: ");
         fflush(stdin);
         scanf("%d", &servicioValido);
@@ -630,15 +789,8 @@ int informes_serviciosYMostrar(
                 {
                     if(listNotes[j].id == idTrabajoActual)
                     {
-                        mostrarNotebook(
-                            listNotes[i],
-                            listMarcas,
-                            tamM,
-                            listTipos,
-                            tamT,
-                            listClientes,
-                            tamC
-                        );
+                        mostrarTrabajo(listTrabajo[i],listNotes,tamN,listServi,tamS);
+                        //mostrarNotebook(listNotes[i],listMarcas,tamM,listTipos,tamT,listClientes,tamC);
                     }
                 }
             }
@@ -651,6 +803,15 @@ int informes_serviciosYMostrar(
     return error;
 }
 
+/** \brief Lista por pantalla todos los servicios que se realizaron en la fecha ingresada por el usuario, si esta todo bien devuleve 0, si algo salio mal -1
+ *
+ * \param listServi[] eServicio
+ * \param tamS int
+ * \param listTrabajo[] eTrabajo
+ * \param tamW int
+ * \return int
+ *
+ */
 int informes_fechaServicios(eServicio listServi[], int tamS, eTrabajo listTrabajo[], int tamW)
 {
     int error = -1;
